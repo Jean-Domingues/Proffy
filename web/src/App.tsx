@@ -1,7 +1,10 @@
 import React from 'react';
 
+import './styles/global.css'
+import Landing from './pages/Landing';
+
 function App() {
-  return <h1>Jean pinto</h1>
+  return <Landing/>
 }
 
 export default App;
