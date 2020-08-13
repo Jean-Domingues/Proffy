@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { View, Image, Text } from 'react-native';
+import { View, Image, Text, Linking } from 'react-native';
 import { RectButton } from 'react-native-gesture-handler';
 
 import heartIcon from '../../assets/images/icons/heart-outline.png';
@@ -24,6 +24,12 @@ interface TeacherItemProps {
 }
 
 const TeacherItem: React.FC<TeacherItemProps> = ({ teacher }) => {
+
+
+  function handleLinkToWpp() {
+    Linking.openURL(`whatsapp://send?phone=${teacher.whatsapp}`)
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.profile}>
@@ -48,7 +54,7 @@ const TeacherItem: React.FC<TeacherItemProps> = ({ teacher }) => {
             <Image source={unfavoriteIcon} />
           </RectButton>
 
-          <RectButton style={styles.contactButton}>
+          <RectButton onPress={handleLinkToWpp} style={styles.contactButton}>
             <Image source={wppIcon} />
             <Text style={styles.contactButtonText}>Whatsapp</Text>
           </RectButton>
