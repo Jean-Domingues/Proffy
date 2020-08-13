@@ -9,27 +9,37 @@ import wppIcon from '../../assets/images/icons/whatsapp.png';
 
 import styles from './styles';
 
-function TeacherItem() {
+export interface Teacher {
+  id: number;
+  avatar: string;
+  bio: string;
+  cost: number;
+  name: string;
+  subject: string;
+  whatsapp: string;
+}
+
+interface TeacherItemProps {
+  teacher: Teacher;
+}
+
+const TeacherItem: React.FC<TeacherItemProps> = ({ teacher }) => {
   return (
     <View style={styles.container}>
       <View style={styles.profile}>
-        <Image source={{ uri: 'https://github.com/Jean-Domingues.png' }} style={styles.avatar} />
+        <Image source={{ uri: teacher.avatar }} style={styles.avatar} />
         <View style={styles.profileInfo}>
-          <Text style={styles.name}>Jean Domingues</Text>
-          <Text style={styles.subject}>Matemática</Text>
+          <Text style={styles.name}>{teacher.name}</Text>
+          <Text style={styles.subject}>{teacher.subject}</Text>
         </View>
       </View>
 
-      <Text style={styles.bio}>
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Atque, incidunt?
-        {'\n'} 
-        Lorem ipsum dolor, eius.
-      </Text>
+      <Text style={styles.bio}>{teacher.bio}</Text>
 
-      <View style={styles.footer}> 
+      <View style={styles.footer}>
         <Text style={styles.price}>
           Preço/Hora {'   '}
-          <Text style={styles.priceValue}>R$ 20,00</Text>
+          <Text style={styles.priceValue}>R$ {teacher.cost}</Text>
         </Text>
 
         <View style={styles.buttonsContainer}>
@@ -40,14 +50,12 @@ function TeacherItem() {
 
           <RectButton style={styles.contactButton}>
             <Image source={wppIcon} />
-            <Text style={styles.contactButtonText}>
-              Whatsapp
-            </Text>
+            <Text style={styles.contactButtonText}>Whatsapp</Text>
           </RectButton>
         </View>
       </View>
     </View>
   );
-}
+};
 
 export default TeacherItem;
